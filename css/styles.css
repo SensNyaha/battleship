@@ -1,0 +1,32 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.allScreenDiv {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #d1a75433;
+}
+
+.leftPlayerSide, .rightPlayerSide {
+  width: 50vw;
+  height: 100vh;
+  border-right: 1px dotted black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.leftPlayerSide .playerMap, .leftPlayerSide .opponentMap, .rightPlayerSide .playerMap, .rightPlayerSide .opponentMap {
+  height: 50vh;
+  width: 50vw;
+}
+/*# sourceMappingURL=styles.css.map */
