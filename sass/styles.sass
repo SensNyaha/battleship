@@ -7,14 +7,97 @@
     width: 100vw
     height: 100vh
     display: flex
-    background-color: #d1a75433
+    background-color: rgba(209, 167, 84, 0.2)
 
 .leftPlayerSide, .rightPlayerSide
-    width: 50vw
-    height: 100vh
-    border-right: 1px dotted black
+    width: 50%
+    height: 100%
+    border-right: 2px dashed #bba579
     display: flex
     flex-wrap: wrap
     .playerMap, .opponentMap
-        height: 50vh
-        width: 50vw
+        height: 50%
+        width: 100%
+        display: flex
+        padding: 10px
+        .availableShips
+            width: 42%
+            height: 100%
+            display: flex
+            flex-wrap: wrap
+            padding: 10px 0 15px 15px
+            .shipShop
+                width: 100%
+                height: 60%
+                border: 1px solid rgba(85, 208, 227, 0.963)
+                background-color: rgba(88, 221, 175, 0.266)
+            .status
+                width: 100%
+                height: 40%
+                display: flex
+                flex-wrap: wrap
+                justify-content: center
+                align-items: center
+                .warnings
+                    width: 100%
+                    height: 50%
+                    margin-top: 15px
+                    background-color: rgba(221, 175, 88, 0.266)
+                .checkbox.ready
+                    font-size: 12px
+                    width: 50%
+                    height: 40%
+                    padding: 10px 0 0 0
+                    display: flex
+                    justify-content: space-around
+                    align-items: center
+                    text-transform: uppercase
+                    div
+                        height: 80%
+                        img
+                            height: 100%
+
+                .start.button
+                    font-size: 12px
+                    width: 40%
+                    height: 25%
+                    margin: 20px 10px 10px 10px
+                    background-color: rgba(144, 147, 144, 0.612)
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    border-radius: 10px
+                    text-transform: uppercase
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+                    cursor: not-allowed
+        .tableZone
+            width: 58%
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            .table
+                width: 100%
+                display: flex
+                justify-content: center
+                align-items: center
+                table
+                    width: 80%
+                    border-collapse: collapse
+                    border-spacing: 0
+                    text-align: center
+                    font-weight: 600
+                    td
+                        width: 5%
+                        border: 1px solid black
+                        height: 4vh
+                        transition: 0.5s all 
+                        &:hover
+                            background-color: pink
+                    td:first-child, tr:first-child td
+                        border: none
+                        &:hover
+                            background-color: rgba(209, 167, 84, 0.2)
+                    
+
+    
