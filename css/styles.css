@@ -120,6 +120,14 @@
   cursor: not-allowed;
 }
 
+.leftPlayerSide .playerMap .availableShips .enemyShips, .leftPlayerSide .opponentMap .availableShips .enemyShips, .rightPlayerSide .playerMap .availableShips .enemyShips, .rightPlayerSide .opponentMap .availableShips .enemyShips {
+  width: 100%;
+  height: 80%;
+  margin-top: 10%;
+  border: 1px solid rgba(227, 85, 217, 0.963);
+  background-color: rgba(221, 90, 88, 0.266);
+}
+
 .leftPlayerSide .playerMap .tableZone, .leftPlayerSide .opponentMap .tableZone, .rightPlayerSide .playerMap .tableZone, .rightPlayerSide .opponentMap .tableZone {
   width: 58%;
   height: 100%;
@@ -159,12 +167,18 @@
   width: 5%;
   border: 1px solid black;
   height: 4vh;
-  -webkit-transition: 0.5s all;
-  transition: 0.5s all;
+  -webkit-transition: 0.1s all;
+  transition: 0.1s all;
 }
 
-.leftPlayerSide .playerMap .tableZone .table table td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:hover, .rightPlayerSide .playerMap .tableZone .table table td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:hover {
+.leftPlayerSide .playerMap .tableZone .table table td.possible:hover, .leftPlayerSide .opponentMap .tableZone .table table td.possible:hover, .rightPlayerSide .playerMap .tableZone .table table td.possible:hover, .rightPlayerSide .opponentMap .tableZone .table table td.possible:hover {
   background-color: pink;
+  cursor: pointer;
+}
+
+.leftPlayerSide .playerMap .tableZone .table table td.unpossible, .leftPlayerSide .opponentMap .tableZone .table table td.unpossible, .rightPlayerSide .playerMap .tableZone .table table td.unpossible, .rightPlayerSide .opponentMap .tableZone .table table td.unpossible {
+  background-color: grey;
+  cursor: not-allowed;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
@@ -172,6 +186,7 @@
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child:hover, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .playerMap .tableZone .table table td:first-child:hover, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover {
-  background-color: rgba(209, 167, 84, 0.2);
+  background-color: transparent;
+  cursor: default;
 }
 /*# sourceMappingURL=styles.css.map */
