@@ -11,7 +11,6 @@ let leftPlayerChosenPositions = [];
 
 let allPlayerDivs = document.querySelectorAll('.playerMap .table');
 
-let direction;
 
 allPlayerDivs.forEach(item => {
 
@@ -21,19 +20,17 @@ allPlayerDivs.forEach(item => {
                 if (!event.target.classList.contains('chosen') && leftPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
                     selectNotChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
-                    console.log('select', leftPlayerChosenPositions)
                 } else if (event.target.classList.contains('chosen')) {
                     removeAlreadyChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
-                    console.log('remove', leftPlayerChosenPositions)
                 }
             }
         }
     })
 })
 
-
 // после постройки корабля сделай все не задействованные ячейки possible
+
 
 function lightUpPossiblePositions(playerPositionsArray, target) {
     switch (playerPositionsArray.length) {
@@ -65,13 +62,23 @@ function lightUpPossiblePositions(playerPositionsArray, target) {
 
 function makeAllCellsUnpossible(target) {
     target.closest('tbody').querySelectorAll('td').forEach(item => {
-        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && item !== target && !item.classList.contains('chosen')) {
+        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.classList.contains('chosen')) {
             item.classList.add('unpossible');
         }
     })
 }
 
+function makeAllCellsUnchosen(target) {
+    target.closest('tbody').querySelectorAll('td').forEach(item => {
+        if (!item.matches('td:first-child') && !item.matches('tr:first-child td')) {
+            item.classList.remove('chosen');
+            item.classList.remove('unpossible');
+        }
+    })
+}
+
 function unlockPossibleCells(playerPositionsArray, target) {
+    let direction;
     switch (playerPositionsArray.length) {
         case 1:
             let possibleCellsIndexes = [];
@@ -98,6 +105,21 @@ function unlockPossibleCells(playerPositionsArray, target) {
             break;
         case 2:
             direction = playerPositionsArray[0][0] === playerPositionsArray[1][0] ? 'row' : 'col';
+            // check if streak was broken by unchoosing chosen cell in the middle of the streak => annihilate all streak and open all the map
+                if (direction === 'row') {
+                    if(!(playerPositionsArray[0][1] + 1 === playerPositionsArray[1][1] || playerPositionsArray[0][1] === playerPositionsArray[1][1] + 1)){
+                        makeAllCellsUnchosen(target);
+                        playerPositionsArray.length = 0;
+                        return
+                    }
+                }
+                else {
+                    if(!(playerPositionsArray[0][0] + 1 === playerPositionsArray[1][0] || playerPositionsArray[0][0] === playerPositionsArray[1][0] + 1)){
+                        makeAllCellsUnchosen(target);
+                        playerPositionsArray.length = 0;
+                        return
+                    }
+                }
 
             if (direction === 'row') { //same first number in microarray [n][0]
                 let nextRightCellIndex = Math.max(playerPositionsArray[0][1], playerPositionsArray[1][1]) + 1;
@@ -118,9 +140,30 @@ function unlockPossibleCells(playerPositionsArray, target) {
                     target.closest('tbody').querySelectorAll('tr')[nextUpCellIndex].querySelectorAll('td')[playerPositionsArray[0][1]].classList.remove('unpossible')
                 }
             }
+            console.log(direction)
             break;
         case 3:
             direction = playerPositionsArray[0][0] === playerPositionsArray[1][0] && playerPositionsArray[1][0] === playerPositionsArray[2][0] ? 'row' : 'col';
+
+            // check if streak was broken by unchoosing chosen cell in the middle of the streak => annihilate all streak and open all the map
+            let rowArray = [playerPositionsArray[0][1], playerPositionsArray[1][1], playerPositionsArray[2][1]];
+            let colArray = [playerPositionsArray[0][0], playerPositionsArray[1][0], playerPositionsArray[2][0]];
+
+            if (direction === 'row') {
+                if(!(Math.max(...rowArray) - 2 === Math.min(...rowArray))){
+                    makeAllCellsUnchosen(target);
+                    playerPositionsArray.length = 0;
+                    return
+                }
+            }
+            else {
+                if(!(Math.max(...colArray) - 2 === Math.min(...colArray))){
+                    makeAllCellsUnchosen(target);
+                    playerPositionsArray.length = 0;
+                    return
+                }
+            }
+
             if (direction === 'row') { //same first number in microarray [n][0]
                 let nextRightCellIndex = Math.max(playerPositionsArray[0][1], playerPositionsArray[1][1], playerPositionsArray[2][1]) + 1;
                 let nextLeftCellIndex = Math.min(playerPositionsArray[0][1], playerPositionsArray[1][1], playerPositionsArray[2][1]) - 1;
@@ -140,6 +183,7 @@ function unlockPossibleCells(playerPositionsArray, target) {
                     target.closest('tbody').querySelectorAll('tr')[nextUpCellIndex].querySelectorAll('td')[playerPositionsArray[0][1]].classList.remove('unpossible')
                 }
             }
+            console.log(direction)
             break;
     }
 }
