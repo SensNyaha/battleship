@@ -42,7 +42,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 10px 0 15px 15px;
+  padding: 10px 0 15px 0;
 }
 
 .leftPlayerSide .playerMap .availableShips .shipShop, .leftPlayerSide .opponentMap .availableShips .shipShop, .rightPlayerSide .playerMap .availableShips .shipShop, .rightPlayerSide .opponentMap .availableShips .shipShop {
@@ -169,9 +169,10 @@
   height: 4vh;
   -webkit-transition: 0.1s all;
   transition: 0.1s all;
+  background-color: transparent;
 }
 
-.leftPlayerSide .playerMap .tableZone .table table td.possible:hover, .leftPlayerSide .opponentMap .tableZone .table table td.possible:hover, .rightPlayerSide .playerMap .tableZone .table table td.possible:hover, .rightPlayerSide .opponentMap .tableZone .table table td.possible:hover {
+.leftPlayerSide .playerMap .tableZone .table table td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:hover, .rightPlayerSide .playerMap .tableZone .table table td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:hover {
   background-color: pink;
   cursor: pointer;
 }
@@ -179,6 +180,10 @@
 .leftPlayerSide .playerMap .tableZone .table table td.unpossible, .leftPlayerSide .opponentMap .tableZone .table table td.unpossible, .rightPlayerSide .playerMap .tableZone .table table td.unpossible, .rightPlayerSide .opponentMap .tableZone .table table td.unpossible {
   background-color: grey;
   cursor: not-allowed;
+}
+
+.leftPlayerSide .playerMap .tableZone .table table td.chosen, .leftPlayerSide .opponentMap .tableZone .table table td.chosen, .rightPlayerSide .playerMap .tableZone .table table td.chosen, .rightPlayerSide .opponentMap .tableZone .table table td.chosen {
+  background-color: pink;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
