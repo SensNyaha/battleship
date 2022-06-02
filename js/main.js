@@ -21,9 +21,11 @@ allPlayerDivs.forEach(item => {
                 if (!event.target.classList.contains('chosen') && leftPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
                     selectNotChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
+                    highlightPossibleShipsToBuild(leftPlayerChosenPositions, event.target)
                 } else if (event.target.classList.contains('chosen')) {
                     removeAlreadyChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
+                    highlightPossibleShipsToBuild(leftPlayerChosenPositions, event.target)
                 }
             }
             else if (event.target.closest('.rightPlayerSide')){
@@ -40,7 +42,20 @@ allPlayerDivs.forEach(item => {
 })
 
 // после постройки корабля сделай все не задействованные ячейки possible
+// ФУНКЦИЯ ПОДСВЕТКИ ДОСТУПНЫХ ДЛЯ ПОСТРОЙКИ КОРАБЛЕЙ
+function highlightPossibleShipsToBuild(playerPositionsArray, target){
+    let fourCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .fourCell .overlay');
+    let threeCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .threeCell .overlay');
+    let twoCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .twoCell .overlay');
+    let oneCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .oneCell .overlay');
 
+    [...fourCellsShipArray,...threeCellsShipArray,...twoCellsShipArray,...oneCellsShipArray].forEach(item => item.style.cssText = 'background-color:black; opacity: 0.2')
+
+    switch (playerPositionsArray.length) {
+        case 1:
+            console.log(oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)'))
+    }
+}
 
 function lightUpPossiblePositions(playerPositionsArray, target) {
     switch (playerPositionsArray.length) {

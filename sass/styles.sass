@@ -37,17 +37,38 @@
                     width: 100%
                     height: 25%
                     display: flex
-                    justify-content: center
-                    img
+                    justify-content: space-around
+                    .imgWrapper
+                        position: relative
                         height: 100%
-                    &.fourCell img
-                        max-width: 100%
-                    &.threeCell img
-                        max-width: 50%
-                    &.twoCell img
-                        max-width: 33%
-                    &.oneCell img
-                        max-width: 25%
+                        display: flex
+                        justify-content: center
+                        img
+                            height: 100%
+                        .overlay
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            right: 0
+                            left: 0
+                            &.suggested
+                                background-image: url('../img/build.png')
+                                background-size: 60%
+                                background-position: center center
+                                background-repeat: no-repeat
+                                border: 3px solid white
+                                border-radius: 100%
+                                background-color: #00000032
+                                cursor: pointer
+                    &.fourCell .imgWrapper
+                        width: 100%
+                    &.threeCell .imgWrapper
+                        width: 50%
+                    &.twoCell .imgWrapper
+                        width: 34%
+                    &.oneCell .imgWrapper
+                        width: 25%
+
             .status
                 width: 100%
                 height: 40%
@@ -89,8 +110,8 @@
                     cursor: not-allowed
             .enemyShips
                 width: 100%
-                height: 80%
-                margin-top: 10%
+                height: 65%
+                margin-top: 35%
                 border: 1px solid rgba(227, 85, 217, 0.963)
                 background-color: rgba(221, 90, 88, 0.266)
                 display: flex
@@ -99,17 +120,28 @@
                     width: 100%
                     height: 25%
                     display: flex
-                    justify-content: center
-                    img
+                    justify-content: space-around
+                    .imgWrapper
+                        position: relative
                         height: 100%
-                    &.fourCell img
-                        max-width: 100%
-                    &.threeCell img
-                        max-width: 50%
-                    &.twoCell img
-                        max-width: 33%
-                    &.oneCell img
-                        max-width: 25%
+                        display: flex
+                        justify-content: center
+                        img
+                            height: 100%
+                        .overlay
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            right: 0
+                            left: 0
+                    &.fourCell .imgWrapper
+                        width: 100%
+                    &.threeCell .imgWrapper
+                        width: 50%
+                    &.twoCell .imgWrapper
+                        width: 34%
+                    &.oneCell .imgWrapper
+                        width: 25%
         .tableZone
             width: 58%
             height: 100%
