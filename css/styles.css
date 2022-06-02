@@ -11,7 +11,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: rgba(209, 167, 84, 0.2);
+  background-color: rgba(94, 69, 32, 0.123);
 }
 
 .leftPlayerSide, .rightPlayerSide {
@@ -169,25 +169,34 @@
   height: 4vh;
   -webkit-transition: 0.1s all;
   transition: 0.1s all;
+  background: url("../img/water-bg.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-color: transparent;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:hover, .rightPlayerSide .playerMap .tableZone .table table td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:hover {
-  background-color: pink;
+  background-color: rgba(41, 83, 220, 0.164);
   cursor: pointer;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td.unpossible, .leftPlayerSide .opponentMap .tableZone .table table td.unpossible, .rightPlayerSide .playerMap .tableZone .table table td.unpossible, .rightPlayerSide .opponentMap .tableZone .table table td.unpossible {
-  background-color: grey;
+  background-color: #05050526;
   cursor: not-allowed;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td.chosen, .leftPlayerSide .opponentMap .tableZone .table table td.chosen, .rightPlayerSide .playerMap .tableZone .table table td.chosen, .rightPlayerSide .opponentMap .tableZone .table table td.chosen {
-  background-color: pink;
+  background: url("../img/chosen-td.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
   border: none;
+  background: inherit;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child:hover, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .playerMap .tableZone .table table td:first-child:hover, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover {

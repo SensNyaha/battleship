@@ -7,7 +7,7 @@
     width: 100vw
     height: 100vh
     display: flex
-    background-color: rgba(209, 167, 84, 0.2)
+    background-color: rgba(94, 69, 32, 0.123)
 
 .leftPlayerSide, .rightPlayerSide
     width: 50%
@@ -98,17 +98,26 @@
                         border: 1px solid black
                         height: 4vh
                         transition: 0.1s all 
+                        background: url('../img/water-bg.png')
+                        background-size: contain
+                        background-position: center center
+                        background-repeat: no-repeat
                         background-color: transparent
                         &:hover
-                            background-color: pink
+                            background-color: rgba(41, 83, 220, 0.164)
                             cursor: pointer
                         &.unpossible
-                            background-color: grey
+                            background-color: #05050526
                             cursor: not-allowed
                         &.chosen
-                            background-color: pink
+                            background: url('../img/chosen-td.png')
+                            background-position: center center
+                            background-repeat: no-repeat
+                            background-color: transparent
+                            background-size: contain 
                     td:first-child, tr:first-child td
                         border: none
+                        background: inherit
                         &:hover
                             background-color: transparent
                             cursor: default

@@ -77,6 +77,12 @@ function makeAllCellsUnchosen(target) {
     })
 }
 
+function makeArrayedIndexesCellsChosen(playerPositionsArray, target) {
+    playerPositionsArray.forEach(item => {
+        target.closest('tbody').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1]].classList.add('chosen');
+    });
+}
+
 function unlockPossibleCells(playerPositionsArray, target) {
     let direction;
     switch (playerPositionsArray.length) {
@@ -109,14 +115,18 @@ function unlockPossibleCells(playerPositionsArray, target) {
                 if (direction === 'row') {
                     if(!(playerPositionsArray[0][1] + 1 === playerPositionsArray[1][1] || playerPositionsArray[0][1] === playerPositionsArray[1][1] + 1)){
                         makeAllCellsUnchosen(target);
-                        playerPositionsArray.length = 0;
+                        playerPositionsArray.length = 1;
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
                         return
                     }
                 }
                 else {
                     if(!(playerPositionsArray[0][0] + 1 === playerPositionsArray[1][0] || playerPositionsArray[0][0] === playerPositionsArray[1][0] + 1)){
                         makeAllCellsUnchosen(target);
-                        playerPositionsArray.length = 0;
+                        playerPositionsArray.length = 1;
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
                         return
                     }
                 }
@@ -140,7 +150,6 @@ function unlockPossibleCells(playerPositionsArray, target) {
                     target.closest('tbody').querySelectorAll('tr')[nextUpCellIndex].querySelectorAll('td')[playerPositionsArray[0][1]].classList.remove('unpossible')
                 }
             }
-            console.log(direction)
             break;
         case 3:
             direction = playerPositionsArray[0][0] === playerPositionsArray[1][0] && playerPositionsArray[1][0] === playerPositionsArray[2][0] ? 'row' : 'col';
@@ -150,17 +159,38 @@ function unlockPossibleCells(playerPositionsArray, target) {
             let colArray = [playerPositionsArray[0][0], playerPositionsArray[1][0], playerPositionsArray[2][0]];
 
             if (direction === 'row') {
+                console.log(playerPositionsArray)
                 if(!(Math.max(...rowArray) - 2 === Math.min(...rowArray))){
                     makeAllCellsUnchosen(target);
-                    playerPositionsArray.length = 0;
-                    return
+                    if (rowArray[0] + 1 === rowArray[1] || rowArray[0] - 1 === rowArray[1]) {
+                        playerPositionsArray.splice(2,1);
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
+                        return
+                    }
+                    else {
+                        playerPositionsArray.splice(0,1);
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
+                        return
+                    }
                 }
             }
             else {
                 if(!(Math.max(...colArray) - 2 === Math.min(...colArray))){
                     makeAllCellsUnchosen(target);
-                    playerPositionsArray.length = 0;
-                    return
+                    if (colArray[0] + 1 === colArray[1] || colArray[0] - 1 === colArray[1]) {
+                        playerPositionsArray.splice(2,1);
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
+                        return
+                    }
+                    else {
+                        playerPositionsArray.splice(0,1);
+                        makeArrayedIndexesCellsChosen(playerPositionsArray, target);
+                        lightUpPossiblePositions(playerPositionsArray, target);
+                        return
+                    }
                 }
             }
 
@@ -183,7 +213,6 @@ function unlockPossibleCells(playerPositionsArray, target) {
                     target.closest('tbody').querySelectorAll('tr')[nextUpCellIndex].querySelectorAll('td')[playerPositionsArray[0][1]].classList.remove('unpossible')
                 }
             }
-            console.log(direction)
             break;
     }
 }
