@@ -8,6 +8,7 @@ let leftPlayerShipsPositions = {
 };
 
 let leftPlayerChosenPositions = [];
+let rightPlayerChosenPositions = [];
 
 let allPlayerDivs = document.querySelectorAll('.playerMap .table');
 
@@ -23,6 +24,15 @@ allPlayerDivs.forEach(item => {
                 } else if (event.target.classList.contains('chosen')) {
                     removeAlreadyChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
+                }
+            }
+            else if (event.target.closest('.rightPlayerSide')){
+                if (!event.target.classList.contains('chosen') && rightPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
+                    selectNotChosenPosition(rightPlayerChosenPositions, event.target);
+                    lightUpPossiblePositions(rightPlayerChosenPositions, event.target);
+                } else if (event.target.classList.contains('chosen')) {
+                    removeAlreadyChosenPosition(rightPlayerChosenPositions, event.target);
+                    lightUpPossiblePositions(rightPlayerChosenPositions, event.target);
                 }
             }
         }
