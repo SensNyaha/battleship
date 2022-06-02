@@ -92,7 +92,7 @@
 
 .leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested {
   background-image: url("../img/build.png");
-  background-size: 60%;
+  background-size: auto 100%;
   background-position: center center;
   background-repeat: no-repeat;
   border: 3px solid white;

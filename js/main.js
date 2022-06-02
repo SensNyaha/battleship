@@ -49,11 +49,27 @@ function highlightPossibleShipsToBuild(playerPositionsArray, target){
     let twoCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .twoCell .overlay');
     let oneCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .oneCell .overlay');
 
-    [...fourCellsShipArray,...threeCellsShipArray,...twoCellsShipArray,...oneCellsShipArray].forEach(item => item.style.cssText = 'background-color:black; opacity: 0.2')
+    let allShips = [...fourCellsShipArray,...threeCellsShipArray,...twoCellsShipArray,...oneCellsShipArray];
+
+    allShips.forEach(item => {item.classList.remove('suggested'); item.style.cssText = 'background-color:black; opacity: 0.2'});
 
     switch (playerPositionsArray.length) {
         case 1:
-            console.log(oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)'))
+            oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').classList.add('suggested');
+            oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
+            break;
+        case 2:
+            twoCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').classList.add('suggested');
+            twoCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
+            break;
+        case 3:
+            threeCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').classList.add('suggested');
+            threeCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
+            break;
+        case 4:
+            fourCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').classList.add('suggested');
+            fourCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
+            break;
     }
 }
 
