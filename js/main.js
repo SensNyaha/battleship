@@ -65,34 +65,15 @@ allPlayerDivs.forEach(item => {
 })
 
 
-//для постройки корабля возьми геопараметры всех ячеек возьми минимум и максимум от списка лево право верх низ и построй абсолютный объект на этом месте
 function buildTheShipOnTheChosenArea (playerPositionsArray, target){
     let chosenTDsArray = [];
     playerPositionsArray.forEach(item => {
         chosenTDsArray.push(target.closest('.playerMap').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1]])
     })
-    let leftBorders = [];
-    let rightBorders = [];
-    let topBorders = [];
-    let bottomBorders = [];
     chosenTDsArray.forEach(item => {
-        leftBorders.push(item.getBoundingClientRect().left);
-        rightBorders.push(item.getBoundingClientRect().right);
-        topBorders.push(item.getBoundingClientRect().top);
-        bottomBorders.push(item.getBoundingClientRect().bottom);
-    }) 
-
-    let div = document.createElement('div');
-    div.style.cssText = `
-        position: absolute;
-        top: ${Math.min(...topBorders)}px;
-        height: ${Math.max(...bottomBorders) - Math.min(...topBorders)}px;
-        left: ${Math.min(...leftBorders)}px;
-        width: ${Math.max(...rightBorders) - Math.min(...leftBorders)}px;
-    `
-    div.style.position = 'absolute';
-    div.classList.add('chosen');
-    document.body.append(div)
+        item.innerText = chosenTDsArray.length;
+        item.classList.add('built');
+    })
 }
 
 
