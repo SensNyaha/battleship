@@ -7,8 +7,29 @@ let leftPlayerShipsPositions = {
     byOne: []
 };
 
+let rightPlayerShipsPositions = {
+    byFour: [],
+    byThree: [],
+    byTwo: [],
+    byOne: []
+};
+
 let leftPlayerChosenPositions = [];
 let rightPlayerChosenPositions = [];
+
+let allShipsInShipShops = document.querySelectorAll('.availableShips .shipShop .overlay');
+allShipsInShipShops.forEach(item => {
+    item.addEventListener('click', (event) => {
+        if (event.target.classList.contains('suggested')) {
+            if (event.target.closest('.leftPlayerSide')){
+                buildTheShipOnTheChosenArea(leftPlayerChosenPositions, event.target)
+            }
+            else {
+                buildTheShipOnTheChosenArea(rightPlayerChosenPositions, event.target)
+            }
+        }
+    })
+})
 
 let allPlayerDivs = document.querySelectorAll('.playerMap .table');
 
@@ -32,14 +53,50 @@ allPlayerDivs.forEach(item => {
                 if (!event.target.classList.contains('chosen') && rightPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
                     selectNotChosenPosition(rightPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(rightPlayerChosenPositions, event.target);
+                    highlightPossibleShipsToBuild(rightPlayerChosenPositions, event.target)
                 } else if (event.target.classList.contains('chosen')) {
                     removeAlreadyChosenPosition(rightPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(rightPlayerChosenPositions, event.target);
+                    highlightPossibleShipsToBuild(rightPlayerChosenPositions, event.target)
                 }
             }
         }
     })
 })
+
+
+//для постройки корабля возьми геопараметры всех ячеек возьми минимум и максимум от списка лево право верх низ и построй абсолютный объект на этом месте
+function buildTheShipOnTheChosenArea (playerPositionsArray, target){
+    let chosenTDsArray = [];
+    playerPositionsArray.forEach(item => {
+        chosenTDsArray.push(target.closest('.playerMap').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1]])
+    })
+    let leftBorders = [];
+    let rightBorders = [];
+    let topBorders = [];
+    let bottomBorders = [];
+    chosenTDsArray.forEach(item => {
+        leftBorders.push(item.getBoundingClientRect().left);
+        rightBorders.push(item.getBoundingClientRect().right);
+        topBorders.push(item.getBoundingClientRect().top);
+        bottomBorders.push(item.getBoundingClientRect().bottom);
+    }) 
+
+    let div = document.createElement('div');
+    div.style.cssText = `
+        position: absolute;
+        top: ${Math.min(...topBorders)}px;
+        height: ${Math.max(...bottomBorders) - Math.min(...topBorders)}px;
+        left: ${Math.min(...leftBorders)}px;
+        width: ${Math.max(...rightBorders) - Math.min(...leftBorders)}px;
+    `
+    div.style.position = 'absolute';
+    div.classList.add('chosen');
+    document.body.append(div)
+}
+
+
+
 
 // после постройки корабля сделай все не задействованные ячейки possible
 // ФУНКЦИЯ ПОДСВЕТКИ ДОСТУПНЫХ ДЛЯ ПОСТРОЙКИ КОРАБЛЕЙ
@@ -54,6 +111,9 @@ function highlightPossibleShipsToBuild(playerPositionsArray, target){
     allShips.forEach(item => {item.classList.remove('suggested'); item.style.cssText = 'background-color:black; opacity: 0.2'});
 
     switch (playerPositionsArray.length) {
+        case 0:
+            allShips.forEach(item => {item.classList.remove('suggested'); item.style.cssText = ''});
+            break;
         case 1:
             oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').classList.add('suggested');
             oneCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
@@ -71,6 +131,8 @@ function highlightPossibleShipsToBuild(playerPositionsArray, target){
             fourCellsShipArray[0].parentElement.parentElement.querySelector('.imgWrapper>div:not(.built)').style.opacity = 0.4;
             break;
     }
+
+
 }
 
 function lightUpPossiblePositions(playerPositionsArray, target) {
