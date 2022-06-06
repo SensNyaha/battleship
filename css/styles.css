@@ -315,6 +315,7 @@
 
 .leftPlayerSide .playerMap .tableZone .table table td.built, .leftPlayerSide .opponentMap .tableZone .table table td.built, .rightPlayerSide .playerMap .tableZone .table table td.built, .rightPlayerSide .opponentMap .tableZone .table table td.built {
   background: rgba(41, 83, 220, 0.453);
+  cursor: default;
 }
 
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {

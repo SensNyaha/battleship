@@ -39,7 +39,7 @@ allPlayerDivs.forEach(item => {
     item.addEventListener('click', (event) => {
         if (event.target.matches('td') && !event.target.matches('td:first-child') && !event.target.matches('tr:first-child td')) {
             if (event.target.closest('.leftPlayerSide')) {
-                if (!event.target.classList.contains('chosen') && leftPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
+                if (!event.target.classList.contains('chosen') && leftPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible') && !event.target.classList.contains('built')) {
                     selectNotChosenPosition(leftPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(leftPlayerChosenPositions, event.target);
                     highlightPossibleShipsToBuild(leftPlayerChosenPositions, event.target)
@@ -50,7 +50,7 @@ allPlayerDivs.forEach(item => {
                 }
             }
             else if (event.target.closest('.rightPlayerSide')){
-                if (!event.target.classList.contains('chosen') && rightPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible')) {
+                if (!event.target.classList.contains('chosen') && rightPlayerChosenPositions.length < 4 && !event.target.classList.contains('unpossible') && !event.target.classList.contains('built')) {
                     selectNotChosenPosition(rightPlayerChosenPositions, event.target);
                     lightUpPossiblePositions(rightPlayerChosenPositions, event.target);
                     highlightPossibleShipsToBuild(rightPlayerChosenPositions, event.target)
@@ -69,11 +69,16 @@ function buildTheShipOnTheChosenArea (playerPositionsArray, target){
     let chosenTDsArray = [];
     playerPositionsArray.forEach(item => {
         chosenTDsArray.push(target.closest('.playerMap').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1]])
-    })
+    });
     chosenTDsArray.forEach(item => {
         item.innerText = chosenTDsArray.length;
         item.classList.add('built');
-    })
+    });
+    target.closest('.playerMap').querySelectorAll('td').forEach(item => {
+        item.classList.remove('unpossible')
+    });
+    playerPositionsArray.length = 0;
+
 }
 
 
@@ -146,7 +151,7 @@ function lightUpPossiblePositions(playerPositionsArray, target) {
 
 function makeAllCellsUnpossible(target) {
     target.closest('tbody').querySelectorAll('td').forEach(item => {
-        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.classList.contains('chosen')) {
+        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.classList.contains('chosen') && !event.target.classList.contains('built')) {
             item.classList.add('unpossible');
         }
     })
