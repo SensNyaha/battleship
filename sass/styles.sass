@@ -60,6 +60,20 @@
                                 border-radius: 100%
                                 background-color: #00000032
                                 cursor: pointer
+                                opacity: 0.7
+                            &.notSuggested
+                                background-color:black
+                                opacity: 0.2
+                            &.wasBuilt
+                                background-image: url('../img/wasBuilt.png')
+                                background-size: auto 100%
+                                background-position: center center
+                                background-repeat: no-repeat
+                                border: 3px solid white
+                                border-radius: 100%
+                                background-color: #00000032
+                                cursor: pointer
+                                opacity: 1
                     &.fourCell .imgWrapper
                         width: 100%
                     &.threeCell .imgWrapper
@@ -184,12 +198,18 @@
                         &.built
                             background: rgba(41, 83, 220, 0.453)
                             cursor: default
+                        &.blocked
+                            background-color: #05050526
+                            cursor: not-allowed
                     td:first-child, tr:first-child td
                         border: none
                         background: inherit
                         &:hover
                             background-color: transparent
                             cursor: default
+                    tr.hidden
+                        td
+                            height: 0
                     
 
     

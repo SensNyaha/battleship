@@ -99,6 +99,23 @@
   border-radius: 100%;
   background-color: #00000032;
   cursor: pointer;
+  opacity: 0.7;
+}
+
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested {
+  opacity: 0.2;
+}
+
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt {
+  background-image: url("../img/wasBuilt.png");
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 100%;
+  background-color: #00000032;
+  cursor: pointer;
+  opacity: 1;
 }
 
 .leftPlayerSide .playerMap .availableShips .shipShop .ships.fourCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships.fourCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships.fourCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships.fourCell .imgWrapper {
@@ -318,6 +335,11 @@
   cursor: default;
 }
 
+.leftPlayerSide .playerMap .tableZone .table table td.blocked, .leftPlayerSide .opponentMap .tableZone .table table td.blocked, .rightPlayerSide .playerMap .tableZone .table table td.blocked, .rightPlayerSide .opponentMap .tableZone .table table td.blocked {
+  background-color: #05050526;
+  cursor: not-allowed;
+}
+
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
   border: none;
   background: inherit;
@@ -326,5 +348,9 @@
 .leftPlayerSide .playerMap .tableZone .table table td:first-child:hover, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .playerMap .tableZone .table table td:first-child:hover, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover {
   background-color: transparent;
   cursor: default;
+}
+
+.leftPlayerSide .playerMap .tableZone .table table tr.hidden td, .leftPlayerSide .opponentMap .tableZone .table table tr.hidden td, .rightPlayerSide .playerMap .tableZone .table table tr.hidden td, .rightPlayerSide .opponentMap .tableZone .table table tr.hidden td {
+  height: 0;
 }
 /*# sourceMappingURL=styles.css.map */
