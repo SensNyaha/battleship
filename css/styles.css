@@ -96,7 +96,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   border: 3px solid white;
-  border-radius: 100%;
+  border-radius: 10px;
   background-color: #00000032;
   cursor: pointer;
   opacity: 0.7;
@@ -112,7 +112,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   border: 3px solid white;
-  border-radius: 100%;
+  border-radius: 10px;
   background-color: #00000032;
   cursor: pointer;
   opacity: 1;
@@ -155,30 +155,35 @@
   height: 50%;
   margin-top: 15px;
   background-color: rgba(221, 175, 88, 0.266);
+  overflow: auto;
+  color: #c66119;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px;
 }
 
 .leftPlayerSide .playerMap .availableShips .status .checkbox.ready, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready {
-  font-size: 12px;
+  font-size: 14px;
   width: 50%;
   height: 40%;
-  padding: 10px 0 0 0;
+  margin-top: 10px;
+  padding-left: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   text-transform: uppercase;
+  cursor: pointer;
+  background: url("../img/checked.png") left center/auto 80% no-repeat;
 }
 
-.leftPlayerSide .playerMap .availableShips .status .checkbox.ready div, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready div, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready div, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready div {
-  height: 80%;
-}
-
-.leftPlayerSide .playerMap .availableShips .status .checkbox.ready div img, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready div img, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready div img, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready div img {
-  height: 100%;
+.leftPlayerSide .playerMap .availableShips .status .checkbox.ready.false, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready.false, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready.false, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready.false {
+  background-image: url("../img/unchecked.png");
 }
 
 .leftPlayerSide .playerMap .availableShips .status .start.button, .leftPlayerSide .opponentMap .availableShips .status .start.button, .rightPlayerSide .playerMap .availableShips .status .start.button, .rightPlayerSide .opponentMap .availableShips .status .start.button {
@@ -200,6 +205,44 @@
   text-transform: uppercase;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   cursor: not-allowed;
+  text-align: center;
+}
+
+@-webkit-keyframes shadowFading {
+  0% {
+    -webkit-box-shadow: 0px 0px 10px olive;
+            box-shadow: 0px 0px 10px olive;
+  }
+  50% {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  100% {
+    -webkit-box-shadow: 0px 0px 10px olive;
+            box-shadow: 0px 0px 10px olive;
+  }
+}
+
+@keyframes shadowFading {
+  0% {
+    -webkit-box-shadow: 0px 0px 10px olive;
+            box-shadow: 0px 0px 10px olive;
+  }
+  50% {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  100% {
+    -webkit-box-shadow: 0px 0px 10px olive;
+            box-shadow: 0px 0px 10px olive;
+  }
+}
+
+.leftPlayerSide .playerMap .availableShips .status .start.button.available, .leftPlayerSide .opponentMap .availableShips .status .start.button.available, .rightPlayerSide .playerMap .availableShips .status .start.button.available, .rightPlayerSide .opponentMap .availableShips .status .start.button.available {
+  cursor: pointer;
+  background-color: rgba(31, 179, 31, 0.612);
+  -webkit-animation: shadowFading 3s ease infinite;
+          animation: shadowFading 3s ease infinite;
 }
 
 .leftPlayerSide .playerMap .availableShips .enemyShips, .leftPlayerSide .opponentMap .availableShips .enemyShips, .rightPlayerSide .playerMap .availableShips .enemyShips, .rightPlayerSide .opponentMap .availableShips .enemyShips {

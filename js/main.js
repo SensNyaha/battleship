@@ -66,9 +66,13 @@ allPlayerDivs.forEach(item => {
     })
 })
 
+function isAllMapWasBuilt (arrayOfBuiltPositions) {
+    return arrayOfBuiltPositions.byOne.length > 3 && arrayOfBuiltPositions.byTwo.length > 2 && arrayOfBuiltPositions.byThree.length > 1 && arrayOfBuiltPositions.byFour.length > 0
+}
+
 
 function blockAllCells (target, arrayOfBuiltPositions) {
-    if (arrayOfBuiltPositions.byOne.length > 3 && arrayOfBuiltPositions.byTwo.length > 2 && arrayOfBuiltPositions.byThree.length > 1 && arrayOfBuiltPositions.byFour.length > 0)
+    if (isAllMapWasBuilt(arrayOfBuiltPositions))
         target.closest('.playerMap').querySelectorAll('td').forEach(item => {
             if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.matches('.built')) {
                 item.classList.add('blocked');
@@ -408,3 +412,78 @@ function removeAlreadyChosenPosition(playerPositionsArray, target) {
 function returnMyPosition(target) {
     return [Array.from(target.closest('tbody').querySelectorAll('tr')).indexOf(target.closest('tr')), Array.from(target.closest('tr').querySelectorAll('td')).indexOf(target)]
 }
+
+let gameStarted = {left: false, right: false, status: false};
+
+let readyStatuses = {left: false, right: false};
+let leftWarningArea = document.querySelector('.leftPlayerSide .warnings')
+let rightWarningArea = document.querySelector('.rightPlayerSide .warnings')
+
+let startButtons = document.querySelectorAll('.start.button')
+
+let readyMarks = document.querySelectorAll('.ready');
+
+readyMarks.forEach(mark => {
+    mark.addEventListener('click', (e) => {
+        if (e.target.closest('.leftPlayerSide')) {
+            if (isAllMapWasBuilt(leftPlayerShipsPositions)) {
+                readyStatuses.left = !readyStatuses.left;
+                mark.classList.toggle('false');
+            }
+            else {
+                leftWarningArea.innerHTML = 'You didnt built all the needed ships to start the game <br><br>' + leftWarningArea.innerHTML
+            }
+            if (readyStatuses.left && readyStatuses.right) {
+                startButtons.forEach(btn => {
+                    btn.classList.add('available')
+                })
+            }
+            else {
+                startButtons.forEach(btn => {
+                    btn.classList.remove('available')
+                })
+            }
+        }
+        else {
+            if (isAllMapWasBuilt(rightPlayerShipsPositions)){
+                readyStatuses.right = !readyStatuses.right;
+                mark.classList.toggle('false');
+            }
+            else {
+                rightWarningArea.innerHTML = 'You didnt built all the needed ships to start the game  <br><br>' + rightWarningArea.innerHTML
+            }
+            if (readyStatuses.left && readyStatuses.right) {
+                startButtons.forEach(btn => {
+                    btn.classList.add('available')
+                })
+            }
+            else {
+                startButtons.forEach(btn => {
+                    btn.classList.remove('available')
+                })
+            }
+        }
+    })
+})
+
+startButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        if (btn.classList.contains('available')) {
+            btn.classList.remove('available');
+            btn.innerText = 'Подождите оппонента';
+            if (e.target.closest('.leftPlayerSide')) {
+                gameStarted.left = true
+            }
+            else {
+                gameStarted.right = true
+            }
+        }
+        if (gameStarted.left && gameStarted.right) {
+            gameStarted.status = true;
+            startButtons.forEach(btn => {
+                btn.innerText = 'Игра началась'
+                ////// ПРОПИСАТЬ ЛОГИКУ НАЧАЛА ИГРЫ, БЛОК ВЕРХНЕГО СЕКТОРА И РАБОТА С НИЖНИМ СЕКТОРОМ
+            })
+        }
+    })
+})
