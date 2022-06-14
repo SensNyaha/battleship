@@ -17,6 +17,8 @@ let rightPlayerShipsPositions = {
 let leftPlayerChosenPositions = [];
 let rightPlayerChosenPositions = [];
 
+let currentPlayer;
+
 let allShipsInShipShops = document.querySelectorAll('.availableShips .shipShop .overlay');
 allShipsInShipShops.forEach(item => {
     item.addEventListener('click', (event) => {
@@ -480,16 +482,22 @@ startButtons.forEach(btn => {
             gameStarted.status = true;
             startButtons.forEach(btn => {
                 btn.innerText = 'Игра началась'
+                currentPlayer = Math.random() > 0.5 ? 'Left' : 'Right'
+                leftWarningArea.innerHTML = `${currentPlayer} player starts the game`
+                rightWarningArea.innerHTML = `${currentPlayer} player starts the game`
                 ////// ПРОПИСАТЬ ЛОГИКУ НАЧАЛА ИГРЫ, БЛОК ВЕРХНЕГО СЕКТОРА И РАБОТА С НИЖНИМ СЕКТОРОМ
             })
         }
     })
 })
 
+let isShot;
+
 let battleAreas = document.querySelectorAll('.opponentMap table');
 battleAreas.forEach(area => {
     area.addEventListener('click', (e) => {
         if (gameStarted.status) {
+            isShot = false;
             strikeTheTarget(e.target)
         }
     })
@@ -497,15 +505,40 @@ battleAreas.forEach(area => {
 
 
 function strikeTheTarget (target) {
-    if (target.closest('.leftPlayerSide')){
+    if (target.closest('.leftPlayerSide') && currentPlayer === 'Left'){
         Object.entries(rightPlayerShipsPositions).forEach(item => {
             item[1].forEach(subarray => {
                 subarray.forEach(cell => {
                     if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
-                        console.log('shot')
+                        console.log('nice shot')
+                        isShot = true;
                     }
+
                 })
             })
+            
         })
+        if (isShot === false) {
+            currentPlayer = 'Right';
+            console.log('right turns');
+        }
+    }
+    else if (target.closest('.rightPlayerSide') && currentPlayer === 'Right') {
+        Object.entries(leftPlayerShipsPositions).forEach(item => {
+            item[1].forEach(subarray => {
+                subarray.forEach(cell => {
+                    if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
+                        console.log('nice shot')
+                        isShot = true;
+                    }
+
+                })
+            })
+            
+        })
+        if (isShot === false) {
+            currentPlayer = 'Left';
+            console.log('left turns');
+        }
     }
 }
