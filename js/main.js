@@ -38,7 +38,6 @@ let allPlayerDivs = document.querySelectorAll('.playerMap .table');
 
 
 allPlayerDivs.forEach(item => {
-
     item.addEventListener('click', (event) => {
         if (event.target.matches('td') && !event.target.matches('td:first-child') && !event.target.matches('tr:first-child td')) {
             if (event.target.closest('.leftPlayerSide')) {
@@ -160,7 +159,6 @@ function markBuiltShip(target) {
 }
 
 
-// после постройки корабля сделай все не задействованные ячейки possible
 // ФУНКЦИЯ ПОДСВЕТКИ ДОСТУПНЫХ ДЛЯ ПОСТРОЙКИ КОРАБЛЕЙ
 function highlightPossibleShipsToBuild(playerPositionsArray, target, arrayOfBuiltPositions) {
     let fourCellsShipArray = target.closest('.playerMap').querySelectorAll('.availableShips .shipShop .fourCell .overlay');
@@ -487,3 +485,27 @@ startButtons.forEach(btn => {
         }
     })
 })
+
+let battleAreas = document.querySelectorAll('.opponentMap table');
+battleAreas.forEach(area => {
+    area.addEventListener('click', (e) => {
+        if (gameStarted.status) {
+            strikeTheTarget(e.target)
+        }
+    })
+})
+
+
+function strikeTheTarget (target) {
+    if (target.closest('.leftPlayerSide')){
+        Object.entries(rightPlayerShipsPositions).forEach(item => {
+            item[1].forEach(subarray => {
+                subarray.forEach(cell => {
+                    if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
+                        console.log('shot')
+                    }
+                })
+            })
+        })
+    }
+}
