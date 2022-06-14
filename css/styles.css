@@ -383,6 +383,22 @@
   cursor: not-allowed;
 }
 
+.leftPlayerSide .playerMap .tableZone .table table td.hit, .leftPlayerSide .opponentMap .tableZone .table table td.hit, .rightPlayerSide .playerMap .tableZone .table table td.hit, .rightPlayerSide .opponentMap .tableZone .table table td.hit {
+  background: url("../img/hit.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+}
+
+.leftPlayerSide .playerMap .tableZone .table table td.miss, .leftPlayerSide .opponentMap .tableZone .table table td.miss, .rightPlayerSide .playerMap .tableZone .table table td.miss, .rightPlayerSide .opponentMap .tableZone .table table td.miss {
+  background: url("../img/miss.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+}
+
 .leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
   border: none;
   background: inherit;

@@ -241,7 +241,7 @@ function lightUpPossiblePositions(playerPositionsArray, target) {
 
 function makeAllCellsUnpossible(target) {
     target.closest('tbody').querySelectorAll('td').forEach(item => {
-        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.classList.contains('chosen') && !event.target.classList.contains('built')) {
+        if (!item.matches('td:first-child') && !item.matches('tr:first-child td') && !item.classList.contains('chosen') && !target.classList.contains('built')) {
             item.classList.add('unpossible');
         }
     })
@@ -492,6 +492,8 @@ startButtons.forEach(btn => {
 })
 
 let isShot;
+let leftPlayerHits = [];
+let rightPlayerHits = [];
 
 let battleAreas = document.querySelectorAll('.opponentMap table');
 battleAreas.forEach(area => {
@@ -502,7 +504,7 @@ battleAreas.forEach(area => {
         }
     })
 })
-
+//не могу понять как реализовать систему определения убил не убил
 
 function strikeTheTarget (target) {
     if (target.closest('.leftPlayerSide') && currentPlayer === 'Left'){
@@ -510,17 +512,19 @@ function strikeTheTarget (target) {
             item[1].forEach(subarray => {
                 subarray.forEach(cell => {
                     if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
-                        console.log('nice shot')
+                        target.classList.add('hit');
+                        blockDiaCells(target);
                         isShot = true;
+                        leftPlayerHits.push(returnMyPosition(target));
+                        console.log(leftPlayerHits);
                     }
-
                 })
             })
             
         })
         if (isShot === false) {
             currentPlayer = 'Right';
-            console.log('right turns');
+            target.classList.add('miss');
         }
     }
     else if (target.closest('.rightPlayerSide') && currentPlayer === 'Right') {
@@ -528,17 +532,42 @@ function strikeTheTarget (target) {
             item[1].forEach(subarray => {
                 subarray.forEach(cell => {
                     if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
-                        console.log('nice shot')
                         isShot = true;
+                        blockDiaCells(target);
+                        target.classList.add('hit');
+                        rightPlayerHits.push(returnMyPosition(target));
+                        console.log(rightPlayerHits);
                     }
-
                 })
             })
             
         })
         if (isShot === false) {
             currentPlayer = 'Left';
-            console.log('left turns');
+            target.classList.add('miss');
         }
     }
+}
+
+function blockDiaCells (target) {
+    let item = returnMyPosition(target);
+    let blockingPositions = [];
+    if (item[1] + 1 < 11 && item[0] + 1 < 11){
+        blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] + 1].querySelectorAll('td')[item[1] + 1], x: item[0] + 1, y: item[1] + 1});
+    }
+    if (item[0] + 1 < 12) {
+        blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] - 1].querySelectorAll('td')[item[1] + 1], x: item[0] - 1, y: item[1] + 1});
+    }
+    if (item[0] + 1 < 11) {
+        blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] + 1].querySelectorAll('td')[item[1] - 1], x: item[0] + 1, y: item[1] - 1});
+    }
+    blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] - 1].querySelectorAll('td')[item[1] - 1], x: item[0] - 1, y: item[1] - 1});
+    
+    blockingPositions.forEach(obj => {
+        if (obj.x < 11 && obj.y < 11) {
+            if (!obj.cell.classList.contains('miss') && !obj.cell.classList.contains('hit')) {
+                obj.cell.classList.add ('blocked');
+            }
+        }
+    })
 }
