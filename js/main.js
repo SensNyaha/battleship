@@ -491,7 +491,7 @@ startButtons.forEach(btn => {
     })
 })
 
-let isShot;
+let isHit;
 let leftPlayerHits = [];
 let rightPlayerHits = [];
 
@@ -499,7 +499,7 @@ let battleAreas = document.querySelectorAll('.opponentMap table');
 battleAreas.forEach(area => {
     area.addEventListener('click', (e) => {
         if (gameStarted.status) {
-            isShot = false;
+            isHit = false;
             strikeTheTarget(e.target)
         }
     })
@@ -507,49 +507,55 @@ battleAreas.forEach(area => {
 //не могу понять как реализовать систему определения убил не убил
 
 function strikeTheTarget (target) {
-    if (target.closest('.leftPlayerSide') && currentPlayer === 'Left'){
+    if (target.closest('.leftPlayerSide') && currentPlayer === 'Left' && !target.classList.contains('blocked')){
         Object.entries(rightPlayerShipsPositions).forEach(item => {
             item[1].forEach(subarray => {
                 subarray.forEach(cell => {
                     if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
                         target.classList.add('hit');
                         blockDiaCells(target);
-                        isShot = true;
+                        isHit = true;
                         leftPlayerHits.push(returnMyPosition(target));
-                        console.log(leftPlayerHits);
+                        if (seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.rightPlayerSide .playerMap'), rightPlayerShipsPositions)) {
+                            makeAmbientCellsBlocked(target);
+                            spotlightDeadShips(target);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
+                        };
                     }
                 })
             })
             
         })
-        if (isShot === false) {
+        if (isHit === false) {
             currentPlayer = 'Right';
             target.classList.add('miss');
         }
     }
-    else if (target.closest('.rightPlayerSide') && currentPlayer === 'Right') {
+    else if (target.closest('.rightPlayerSide') && currentPlayer === 'Right' && !target.classList.contains('blocked')) {
         Object.entries(leftPlayerShipsPositions).forEach(item => {
             item[1].forEach(subarray => {
                 subarray.forEach(cell => {
                     if (returnMyPosition(target)[0] === returnMyPosition(cell)[0] && returnMyPosition(target)[1] === returnMyPosition(cell)[1]) {
-                        isShot = true;
+                        isHit = true;
                         blockDiaCells(target);
                         target.classList.add('hit');
                         rightPlayerHits.push(returnMyPosition(target));
-                        console.log(rightPlayerHits);
+                        if (seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.leftPlayerSide .playerMap'), leftPlayerShipsPositions)) {
+                            makeAmbientCellsBlocked(target);
+                            spotlightDeadShips(target);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
+                        };
                     }
                 })
             })
             
         })
-        if (isShot === false) {
+        if (isHit === false) {
             currentPlayer = 'Left';
             target.classList.add('miss');
         }
     }
 }
 
-function blockDiaCells (target) {
+function blockDiaCells (target, notOnlyDia) {
     let item = returnMyPosition(target);
     let blockingPositions = [];
     if (item[1] + 1 < 11 && item[0] + 1 < 11){
@@ -563,6 +569,17 @@ function blockDiaCells (target) {
     }
     blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] - 1].querySelectorAll('td')[item[1] - 1], x: item[0] - 1, y: item[1] - 1});
     
+    if (notOnlyDia) {
+        if (item[0] + 1 < 11) {
+            blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] + 1].querySelectorAll('td')[item[1]], x: item[0] + 1, y: item[1]});
+        }
+        if (item[1] + 1 < 11){
+            blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1] + 1], x: item[0], y: item[1] + 1});
+        }
+        blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0]].querySelectorAll('td')[item[1] - 1], x: item[0], y: item[1] - 1});
+        blockingPositions.push({cell: target.closest('.opponentMap').querySelectorAll('tr')[item[0] - 1].querySelectorAll('td')[item[1]], x: item[0] - 1, y: item[1]});
+    }
+
     blockingPositions.forEach(obj => {
         if (obj.x < 11 && obj.y < 11) {
             if (!obj.cell.classList.contains('miss') && !obj.cell.classList.contains('hit')) {
@@ -570,4 +587,39 @@ function blockDiaCells (target) {
             }
         }
     })
+}
+
+function findCellByArrayOfIndexes (arrayOfIndexes, parentSelector) {
+    return document.querySelector(parentSelector).querySelectorAll('tr')[arrayOfIndexes[0]].querySelectorAll('td')[arrayOfIndexes[1]]
+}
+
+function seekAndSpliceCellFromArray (target, arrayOfShipsPositions) {
+    let foundKey;
+    let foundFirstIndex;
+    let foundSecondIndex;
+    for (let key in arrayOfShipsPositions) {
+        arrayOfShipsPositions[key].forEach((item, index) => {
+            item.forEach((subitem, subindex) => {
+                if (subitem === target) {
+                    foundKey = key;
+                    foundFirstIndex = index;
+                    foundSecondIndex = subindex;
+                }
+            })
+        })
+    }
+    console.log(arrayOfShipsPositions[foundKey][foundFirstIndex].splice(foundSecondIndex, 1));
+    if (checkForKilledShips(arrayOfShipsPositions, foundKey, foundFirstIndex)){
+        return true
+    }
+}
+
+function checkForKilledShips (arrayOfShipsPositions, foundKey, foundFirstIndex) {
+    if (arrayOfShipsPositions[foundKey][foundFirstIndex].length === 0) {
+        return true
+    }
+}
+
+function makeAmbientCellsBlocked (target) {
+    blockDiaCells(target, true);
 }
