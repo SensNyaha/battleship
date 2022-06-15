@@ -515,10 +515,11 @@ function strikeTheTarget (target) {
                         target.classList.add('hit');
                         blockDiaCells(target);
                         isHit = true;
-                        leftPlayerHits.push(returnMyPosition(target));
-                        if (seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.rightPlayerSide .playerMap'), rightPlayerShipsPositions)) {
-                            makeAmbientCellsBlocked(target);
-                            spotlightDeadShips(target);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
+                        leftPlayerHits.push(target);
+                        let foundKey = seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.rightPlayerSide .playerMap'), rightPlayerShipsPositions);
+                        if (foundKey) {
+                            makeAmbientCellsBlocked(leftPlayerHits);
+                            spotlightDeadShips(target, foundKey);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
                         };
                     }
                 })
@@ -538,10 +539,11 @@ function strikeTheTarget (target) {
                         isHit = true;
                         blockDiaCells(target);
                         target.classList.add('hit');
-                        rightPlayerHits.push(returnMyPosition(target));
-                        if (seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.leftPlayerSide .playerMap'), leftPlayerShipsPositions)) {
-                            makeAmbientCellsBlocked(target);
-                            spotlightDeadShips(target);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
+                        rightPlayerHits.push(target);
+                        let foundKey = seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.leftPlayerSide .playerMap'), leftPlayerShipsPositions);
+                        if (foundKey) {
+                            makeAmbientCellsBlocked(rightPlayerHits);
+                            spotlightDeadShips(target, foundKey);
                         };
                     }
                 })
@@ -610,7 +612,7 @@ function seekAndSpliceCellFromArray (target, arrayOfShipsPositions) {
     }
     console.log(arrayOfShipsPositions[foundKey][foundFirstIndex].splice(foundSecondIndex, 1));
     if (checkForKilledShips(arrayOfShipsPositions, foundKey, foundFirstIndex)){
-        return true
+        return foundKey
     }
 }
 
@@ -620,6 +622,10 @@ function checkForKilledShips (arrayOfShipsPositions, foundKey, foundFirstIndex) 
     }
 }
 
-function makeAmbientCellsBlocked (target) {
-    blockDiaCells(target, true);
+function makeAmbientCellsBlocked (arrayOfPositions) {
+    arrayOfPositions.forEach(target => blockDiaCells(target, true));
+}
+
+function spotlightDeadShips (target, foundKey) {
+    switch-case
 }
