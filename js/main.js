@@ -485,7 +485,6 @@ startButtons.forEach(btn => {
                 currentPlayer = Math.random() > 0.5 ? 'Left' : 'Right'
                 leftWarningArea.innerHTML = `${currentPlayer} player starts the game`
                 rightWarningArea.innerHTML = `${currentPlayer} player starts the game`
-                ////// ПРОПИСАТЬ ЛОГИКУ НАЧАЛА ИГРЫ, БЛОК ВЕРХНЕГО СЕКТОРА И РАБОТА С НИЖНИМ СЕКТОРОМ
             })
         }
     })
@@ -610,7 +609,6 @@ function seekAndSpliceCellFromArray (target, arrayOfShipsPositions) {
             })
         })
     }
-    console.log(arrayOfShipsPositions[foundKey][foundFirstIndex].splice(foundSecondIndex, 1));
     if (checkForKilledShips(arrayOfShipsPositions, foundKey, foundFirstIndex)){
         return foundKey
     }
@@ -627,5 +625,18 @@ function makeAmbientCellsBlocked (arrayOfPositions) {
 }
 
 function spotlightDeadShips (target, foundKey) {
-    switch-case
+    switch (foundKey) {
+        case 'byFour':
+            target.closest('.opponentMap').querySelector('.fourCell .overlay:not(.destroyed)').classList.add('destroyed');
+            break;
+        case 'byThree':
+            target.closest('.opponentMap').querySelector('.threeCell .overlay:not(.destroyed)').classList.add('destroyed');
+            break;
+        case 'byTwo':
+            target.closest('.opponentMap').querySelector('.twoCell .overlay:not(.destroyed)').classList.add('destroyed');
+            break;
+        case 'byOne':
+            target.closest('.opponentMap').querySelector('.oneCell .overlay:not(.destroyed)').classList.add('destroyed');
+            break;
+    }
 }
