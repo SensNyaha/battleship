@@ -3,6 +3,20 @@
     margin: 0
     padding: 0
 
+body
+    @keyframes slideOutLeft
+        0%
+            transform: translateX(-100%)
+        100%
+            transform: translateX(0)
+
+    @keyframes slideOutRight
+        0%
+            transform: translateX(100%)
+        100%
+            transform: translateX(0)
+    
+
 .allScreenDiv
     width: 100vw
     height: 100vh
@@ -12,7 +26,7 @@
 .leftPlayerSide, .rightPlayerSide
     width: 50%
     height: 100%
-    border-right: 2px dashed #bba579
+    border: 1px dashed #bba579
     display: flex
     flex-wrap: wrap
     .playerMap, .opponentMap
@@ -62,7 +76,7 @@
                                 cursor: pointer
                                 opacity: 0.7
                             &.notSuggested
-                                background-color:black
+                                background-color: black
                                 opacity: 0.2
                             &.wasBuilt
                                 background-image: url('../img/wasBuilt.png')
@@ -139,9 +153,14 @@
                     cursor: not-allowed
                     text-align: center
                     @keyframes shadowFading 
-                        0% {box-shadow: 0px 0px 10px olive}
-                        50% {box-shadow: none}
-                        100% {box-shadow: 0px 0px 10px olive}
+                        0% 
+                            box-shadow: 0px 0px 10px olive
+
+                        50% 
+                            box-shadow: none
+
+                        100% 
+                            box-shadow: 0px 0px 10px olive
                     
                     &.available
                         cursor: pointer
@@ -247,6 +266,7 @@
                     tr.hidden
                         td
                             height: 0
-                    
-
-    
+.leftPlayerSide
+    animation: slideOutLeft 1s
+.rightPlayerSide
+    animation: slideOutRight 1s

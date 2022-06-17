@@ -503,7 +503,7 @@ battleAreas.forEach(area => {
         }
     })
 })
-//не могу понять как реализовать систему определения убил не убил
+
 
 function strikeTheTarget (target) {
     if (target.closest('.leftPlayerSide') && currentPlayer === 'Left' && !target.classList.contains('blocked')){
@@ -518,8 +518,11 @@ function strikeTheTarget (target) {
                         let foundKey = seekAndSpliceCellFromArray (findCellByArrayOfIndexes(returnMyPosition(target), '.rightPlayerSide .playerMap'), rightPlayerShipsPositions);
                         if (foundKey) {
                             makeAmbientCellsBlocked(leftPlayerHits);
-                            spotlightDeadShips(target, foundKey);//нужно сюда как-то прокинуть ключ foundKey, который знает, какой корабль сдох
+                            spotlightDeadShips(target, foundKey);
                         };
+                        if (checkGameOver()) {
+                            stopTheGame('Left');
+                        }
                     }
                 })
             })
@@ -544,6 +547,9 @@ function strikeTheTarget (target) {
                             makeAmbientCellsBlocked(rightPlayerHits);
                             spotlightDeadShips(target, foundKey);
                         };
+                        if (checkGameOver()) {
+                            stopTheGame('Right');
+                        }
                     }
                 })
             })
@@ -609,6 +615,7 @@ function seekAndSpliceCellFromArray (target, arrayOfShipsPositions) {
             })
         })
     }
+    arrayOfShipsPositions[foundKey][foundFirstIndex].splice(foundSecondIndex, 1);
     if (checkForKilledShips(arrayOfShipsPositions, foundKey, foundFirstIndex)){
         return foundKey
     }
@@ -639,4 +646,20 @@ function spotlightDeadShips (target, foundKey) {
             target.closest('.opponentMap').querySelector('.oneCell .overlay:not(.destroyed)').classList.add('destroyed');
             break;
     }
+}
+
+function checkGameOver () {
+    return Object.entries(rightPlayerShipsPositions).every(item => item[1].every(subitem => subitem.length === 0)) || Object.entries(leftPlayerShipsPositions).every(item => item[1].every(subitem => subitem.length === 0))
+}
+
+function stopTheGame (winner) {
+    document.write(`<div style='margin:100px auto; width:500px; text-align: center'>
+    <h1>${winner} player won the game</h1>
+    <h2>Do you all want to restart?</h2>
+    <button onClick='restartThePage()' style='height:3em; background-color: blue; color: white; outline: none; font-family:sans-serif; border-radius: 7px; border: none; box-shadow: 2px 2px lightblue; cursor:pointer'>Перезапустить игру</button>
+    </div>`)
+}
+
+function restartThePage() {
+    document.location.reload() 
 }
