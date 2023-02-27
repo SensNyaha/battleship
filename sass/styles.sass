@@ -1,0 +1,272 @@
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+
+body
+    @keyframes slideOutLeft
+        0%
+            transform: translateX(-100%)
+        100%
+            transform: translateX(0)
+
+    @keyframes slideOutRight
+        0%
+            transform: translateX(100%)
+        100%
+            transform: translateX(0)
+    
+
+.allScreenDiv
+    width: 100vw
+    height: 100vh
+    display: flex
+    background-color: rgba(94, 69, 32, 0.123)
+
+.leftPlayerSide, .rightPlayerSide
+    width: 50%
+    height: 100%
+    border: 1px dashed #bba579
+    display: flex
+    flex-wrap: wrap
+    .playerMap, .opponentMap
+        height: 50%
+        width: 100%
+        display: flex
+        padding: 10px
+        .availableShips
+            width: 42%
+            height: 100%
+            display: flex
+            flex-wrap: wrap
+            padding: 10px 0 15px 0
+            .shipShop, .enemyShips
+                width: 100%
+                height: 60%
+                border: 1px solid rgba(85, 208, 227, 0.963)
+                background-color: rgba(88, 221, 175, 0.266)
+                display: flex
+                flex-wrap: wrap
+                .ships
+                    width: 100%
+                    height: 25%
+                    display: flex
+                    justify-content: space-around
+                    .imgWrapper
+                        position: relative
+                        height: 100%
+                        display: flex
+                        justify-content: center
+                        img
+                            height: 100%
+                        .overlay
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            right: 0
+                            left: 0
+                            &.suggested
+                                background-image: url('../img/build.png')
+                                background-size: auto 100%
+                                background-position: center center
+                                background-repeat: no-repeat
+                                border: 3px solid white
+                                border-radius: 10px
+                                background-color: #00000032
+                                cursor: pointer
+                                opacity: 0.7
+                            &.notSuggested
+                                background-color: black
+                                opacity: 0.2
+                            &.wasBuilt
+                                background-image: url('../img/wasBuilt.png')
+                                background-size: auto 100%
+                                background-position: center center
+                                background-repeat: no-repeat
+                                border: 3px solid white
+                                border-radius: 10px
+                                background-color: #00000032
+                                cursor: pointer
+                                opacity: 1
+                            &.destroyed
+                                background-image: url('../img/hit.png')
+                                background-size: auto 100%
+                                background-position: center center
+                                background-repeat: no-repeat
+                                border-radius: 10px
+                                background-color: #00000032
+                                cursor: pointer
+                                opacity: 1
+                    &.fourCell .imgWrapper
+                        width: 100%
+                    &.threeCell .imgWrapper
+                        width: 50%
+                    &.twoCell .imgWrapper
+                        width: 34%
+                    &.oneCell .imgWrapper
+                        width: 25%
+
+            .status
+                width: 100%
+                height: 40%
+                display: flex
+                flex-wrap: wrap
+                justify-content: center
+                align-items: center
+                .warnings
+                    width: 100%
+                    height: 50%
+                    margin-top: 15px
+                    background-color: rgba(221, 175, 88, 0.266)
+                    overflow: auto
+                    color: #c66119
+                    font-size: 16px
+                    font-weight: 600
+                    padding: 7px
+                .checkbox.ready
+                    font-size: 14px
+                    width: 50%
+                    height: 40%
+                    margin-top: 10px
+                    padding-left: 30%
+                    display: flex
+                    justify-content: flex-start
+                    align-items: center
+                    text-transform: uppercase
+                    cursor: pointer
+                    background: url('../img/checked.png') left center/auto 80% no-repeat
+                    &.false
+                        background-image: url('../img/unchecked.png') 
+
+                .start.button
+                    font-size: 12px
+                    width: 40%
+                    height: 25%
+                    margin: 20px 10px 10px 10px
+                    background-color: rgba(144, 147, 144, 0.612)
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    border-radius: 10px
+                    text-transform: uppercase
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+                    cursor: not-allowed
+                    text-align: center
+                    @keyframes shadowFading 
+                        0% 
+                            box-shadow: 0px 0px 10px olive
+
+                        50% 
+                            box-shadow: none
+
+                        100% 
+                            box-shadow: 0px 0px 10px olive
+                    
+                    &.available
+                        cursor: pointer
+                        background-color: rgba(31, 179, 31, 0.612)
+                        animation: shadowFading 3s ease infinite
+            .enemyShips
+                width: 100%
+                height: 65%
+                margin-top: 35%
+                border: 1px solid rgba(227, 85, 217, 0.963)
+                background-color: rgba(221, 90, 88, 0.266)
+                display: flex
+                flex-wrap: wrap
+                .ships
+                    width: 100%
+                    height: 25%
+                    display: flex
+                    justify-content: space-around
+                    .imgWrapper
+                        position: relative
+                        height: 100%
+                        display: flex
+                        justify-content: center
+                        img
+                            height: 100%
+                        .overlay
+                            position: absolute
+                            top: 0
+                            bottom: 0
+                            right: 0
+                            left: 0
+                    &.fourCell .imgWrapper
+                        width: 100%
+                    &.threeCell .imgWrapper
+                        width: 50%
+                    &.twoCell .imgWrapper
+                        width: 34%
+                    &.oneCell .imgWrapper
+                        width: 25%
+        .tableZone
+            width: 58%
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            .table
+                width: 100%
+                display: flex
+                justify-content: center
+                align-items: center
+                table
+                    width: 80%
+                    border-collapse: collapse
+                    border-spacing: 0
+                    text-align: center
+                    font-weight: 600
+                    td
+                        width: 5%
+                        border: 1px solid black
+                        height: 4vh
+                        transition: 0.1s all 
+                        background: url('../img/water-bg.png')
+                        background-size: contain
+                        background-position: center center
+                        background-repeat: no-repeat
+                        background-color: transparent
+                        &:hover
+                            background-color: rgba(41, 83, 220, 0.164)
+                            cursor: pointer
+                        &.unpossible
+                            background-color: #05050526
+                            cursor: not-allowed
+                        &.chosen
+                            background: url('../img/chosen-td.png')
+                            background-position: center center
+                            background-repeat: no-repeat
+                            background-color: transparent
+                            background-size: contain 
+                        &.built
+                            background: rgba(41, 83, 220, 0.453)
+                            cursor: default
+                        &.blocked
+                            background-color: #05050526
+                            cursor: not-allowed
+                        &.hit
+                            background: url('../img/hit.png')
+                            background-position: center center
+                            background-repeat: no-repeat
+                            background-color: transparent
+                            background-size: contain 
+                        &.miss
+                            background: url('../img/miss.png'), url('../img/water-bg.png')
+                            background-position: center center
+                            background-repeat: no-repeat
+                            background-color: #05050526
+                            background-size: contain 
+                    td:first-child, tr:first-child td
+                        border: none
+                        background: inherit
+                        &:hover
+                            background-color: transparent
+                            cursor: default
+                    tr.hidden
+                        td
+                            height: 0
+.leftPlayerSide
+    animation: slideOutLeft 1s
+.rightPlayerSide
+    animation: slideOutRight 1s

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="allScreenDiv">
+        <div class="leftPlayerSide">
+            <div class="playerMap">
+                <div class="tableZone">
+                    <div class="table">
+                        <table>
+                            <tr>
+                                <td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td>
+                            </tr>
+                            <tr>
+                                <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="availableShips">
+                    <div class="shipShop">
+                        <div class="ships fourCell"><div class="imgWrapper">
+                            <img src="img/four-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships threeCell"><div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships twoCell"><div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships oneCell"><div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                    </div>
+                    <div class="status">
+                        <div class="warnings">
+
+                        </div>
+                        <div class="checkbox ready false">
+                                Я готов!
+                        </div>
+                        <div class="button start available">
+                            Начать игру
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opponentMap">
+                <div class="availableShips">
+                    <div class="enemyShips">
+                        <div class="ships fourCell"><div class="imgWrapper">
+                            <img src="img/four-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships threeCell"><div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships twoCell"><div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships oneCell"><div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                    </div>
+                </div>
+                <div class="tableZone">
+                        <div class="table">
+                            <table>
+                                <tr>
+                                    <td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="rightPlayerSide">
+            <div class="playerMap">
+                <div class="availableShips">
+                    <div class="shipShop">
+                        <div class="ships fourCell"><div class="imgWrapper">
+                            <img src="img/four-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships threeCell"><div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships twoCell"><div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships oneCell"><div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                    </div>
+                    <div class="status">
+                        <div class="warnings">
+
+                        </div>
+                        <div class="checkbox ready false">
+                                Я готов!
+                        </div>
+                        <div class="button start available">
+                            Начать игру
+                        </div>
+                    </div>
+                </div>
+                <div class="tableZone">
+                    <div class="table">
+                        <table>
+                            <tr>
+                                <td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td>
+                            </tr>
+                            <tr>
+                                <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="opponentMap">
+                <div class="tableZone">
+                    <div class="table">
+                        <table>
+                            <tr>
+                                <td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td>
+                            </tr>
+                            <tr>
+                                <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="availableShips">
+                    <div class="enemyShips">
+                        <div class="ships fourCell"><div class="imgWrapper">
+                            <img src="img/four-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships threeCell"><div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/three-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships twoCell"><div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/two-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                        <div class="ships oneCell"><div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div>
+                        <div class="imgWrapper">
+                            <img src="img/one-cells-ship-row.png" alt=""><div class="overlay"></div>
+                        </div></div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

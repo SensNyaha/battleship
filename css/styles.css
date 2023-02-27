@@ -1,0 +1,355 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@-webkit-keyframes slideOutLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes slideOutRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.allScreenDiv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(94, 69, 32, 0.123);
+}
+
+.leftPlayerSide, .rightPlayerSide {
+  width: 50%;
+  height: 100%;
+  border: 1px dashed #bba579;
+  display: flex;
+  flex-wrap: wrap;
+}
+.leftPlayerSide .playerMap, .leftPlayerSide .opponentMap, .rightPlayerSide .playerMap, .rightPlayerSide .opponentMap {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  padding: 10px;
+}
+.leftPlayerSide .playerMap .availableShips, .leftPlayerSide .opponentMap .availableShips, .rightPlayerSide .playerMap .availableShips, .rightPlayerSide .opponentMap .availableShips {
+  width: 42%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0 15px 0;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop, .leftPlayerSide .playerMap .availableShips .enemyShips, .leftPlayerSide .opponentMap .availableShips .shipShop, .leftPlayerSide .opponentMap .availableShips .enemyShips, .rightPlayerSide .playerMap .availableShips .shipShop, .rightPlayerSide .playerMap .availableShips .enemyShips, .rightPlayerSide .opponentMap .availableShips .shipShop, .rightPlayerSide .opponentMap .availableShips .enemyShips {
+  width: 100%;
+  height: 60%;
+  border: 1px solid rgba(85, 208, 227, 0.963);
+  background-color: rgba(88, 221, 175, 0.266);
+  display: flex;
+  flex-wrap: wrap;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships, .leftPlayerSide .playerMap .availableShips .enemyShips .ships, .leftPlayerSide .opponentMap .availableShips .shipShop .ships, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships, .rightPlayerSide .playerMap .availableShips .shipShop .ships, .rightPlayerSide .playerMap .availableShips .enemyShips .ships, .rightPlayerSide .opponentMap .availableShips .shipShop .ships, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper img, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper img, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper img, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper img, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper img, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper img, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper img, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper img {
+  height: 100%;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.suggested, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.suggested, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.suggested, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.suggested, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.suggested {
+  background-image: url("../img/build.png");
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1960784314);
+  cursor: pointer;
+  opacity: 0.7;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.notSuggested, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.notSuggested, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.notSuggested {
+  background-color: black;
+  opacity: 0.2;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.wasBuilt, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.wasBuilt, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.wasBuilt {
+  background-image: url("../img/wasBuilt.png");
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1960784314);
+  cursor: pointer;
+  opacity: 1;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.destroyed, .leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.destroyed, .leftPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.destroyed, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.destroyed, .rightPlayerSide .playerMap .availableShips .shipShop .ships .imgWrapper .overlay.destroyed, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay.destroyed, .rightPlayerSide .opponentMap .availableShips .shipShop .ships .imgWrapper .overlay.destroyed, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay.destroyed {
+  background-image: url("../img/hit.png");
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1960784314);
+  cursor: pointer;
+  opacity: 1;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships.fourCell .imgWrapper, .leftPlayerSide .playerMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships.fourCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships.fourCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships.fourCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.fourCell .imgWrapper {
+  width: 100%;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships.threeCell .imgWrapper, .leftPlayerSide .playerMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships.threeCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships.threeCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships.threeCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.threeCell .imgWrapper {
+  width: 50%;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships.twoCell .imgWrapper, .leftPlayerSide .playerMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships.twoCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships.twoCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships.twoCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.twoCell .imgWrapper {
+  width: 34%;
+}
+.leftPlayerSide .playerMap .availableShips .shipShop .ships.oneCell .imgWrapper, .leftPlayerSide .playerMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .shipShop .ships.oneCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .shipShop .ships.oneCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .shipShop .ships.oneCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.oneCell .imgWrapper {
+  width: 25%;
+}
+.leftPlayerSide .playerMap .availableShips .status, .leftPlayerSide .opponentMap .availableShips .status, .rightPlayerSide .playerMap .availableShips .status, .rightPlayerSide .opponentMap .availableShips .status {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.leftPlayerSide .playerMap .availableShips .status .warnings, .leftPlayerSide .opponentMap .availableShips .status .warnings, .rightPlayerSide .playerMap .availableShips .status .warnings, .rightPlayerSide .opponentMap .availableShips .status .warnings {
+  width: 100%;
+  height: 50%;
+  margin-top: 15px;
+  background-color: rgba(221, 175, 88, 0.266);
+  overflow: auto;
+  color: #c66119;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px;
+}
+.leftPlayerSide .playerMap .availableShips .status .checkbox.ready, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready {
+  font-size: 14px;
+  width: 50%;
+  height: 40%;
+  margin-top: 10px;
+  padding-left: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: url("../img/checked.png") left center/auto 80% no-repeat;
+}
+.leftPlayerSide .playerMap .availableShips .status .checkbox.ready.false, .leftPlayerSide .opponentMap .availableShips .status .checkbox.ready.false, .rightPlayerSide .playerMap .availableShips .status .checkbox.ready.false, .rightPlayerSide .opponentMap .availableShips .status .checkbox.ready.false {
+  background-image: url("../img/unchecked.png");
+}
+.leftPlayerSide .playerMap .availableShips .status .start.button, .leftPlayerSide .opponentMap .availableShips .status .start.button, .rightPlayerSide .playerMap .availableShips .status .start.button, .rightPlayerSide .opponentMap .availableShips .status .start.button {
+  font-size: 12px;
+  width: 40%;
+  height: 25%;
+  margin: 20px 10px 10px 10px;
+  background-color: rgba(144, 147, 144, 0.612);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  cursor: not-allowed;
+  text-align: center;
+}
+@-webkit-keyframes shadowFading {
+  0% {
+    box-shadow: 0px 0px 10px olive;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: 0px 0px 10px olive;
+  }
+}
+@keyframes shadowFading {
+  0% {
+    box-shadow: 0px 0px 10px olive;
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    box-shadow: 0px 0px 10px olive;
+  }
+}
+.leftPlayerSide .playerMap .availableShips .status .start.button.available, .leftPlayerSide .opponentMap .availableShips .status .start.button.available, .rightPlayerSide .playerMap .availableShips .status .start.button.available, .rightPlayerSide .opponentMap .availableShips .status .start.button.available {
+  cursor: pointer;
+  background-color: rgba(31, 179, 31, 0.612);
+  -webkit-animation: shadowFading 3s ease infinite;
+          animation: shadowFading 3s ease infinite;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips, .leftPlayerSide .opponentMap .availableShips .enemyShips, .rightPlayerSide .playerMap .availableShips .enemyShips, .rightPlayerSide .opponentMap .availableShips .enemyShips {
+  width: 100%;
+  height: 65%;
+  margin-top: 35%;
+  border: 1px solid rgba(227, 85, 217, 0.963);
+  background-color: rgba(221, 90, 88, 0.266);
+  display: flex;
+  flex-wrap: wrap;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships, .rightPlayerSide .playerMap .availableShips .enemyShips .ships, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper img, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper img, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper img, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper img {
+  height: 100%;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay, .rightPlayerSide .playerMap .availableShips .enemyShips .ships .imgWrapper .overlay, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships .imgWrapper .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.fourCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.fourCell .imgWrapper {
+  width: 100%;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.threeCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.threeCell .imgWrapper {
+  width: 50%;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.twoCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.twoCell .imgWrapper {
+  width: 34%;
+}
+.leftPlayerSide .playerMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .leftPlayerSide .opponentMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .rightPlayerSide .playerMap .availableShips .enemyShips .ships.oneCell .imgWrapper, .rightPlayerSide .opponentMap .availableShips .enemyShips .ships.oneCell .imgWrapper {
+  width: 25%;
+}
+.leftPlayerSide .playerMap .tableZone, .leftPlayerSide .opponentMap .tableZone, .rightPlayerSide .playerMap .tableZone, .rightPlayerSide .opponentMap .tableZone {
+  width: 58%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftPlayerSide .playerMap .tableZone .table, .leftPlayerSide .opponentMap .tableZone .table, .rightPlayerSide .playerMap .tableZone .table, .rightPlayerSide .opponentMap .tableZone .table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftPlayerSide .playerMap .tableZone .table table, .leftPlayerSide .opponentMap .tableZone .table table, .rightPlayerSide .playerMap .tableZone .table table, .rightPlayerSide .opponentMap .tableZone .table table {
+  width: 80%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  font-weight: 600;
+}
+.leftPlayerSide .playerMap .tableZone .table table td, .leftPlayerSide .opponentMap .tableZone .table table td, .rightPlayerSide .playerMap .tableZone .table table td, .rightPlayerSide .opponentMap .tableZone .table table td {
+  width: 5%;
+  border: 1px solid black;
+  height: 4vh;
+  transition: 0.1s all;
+  background: url("../img/water-bg.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+.leftPlayerSide .playerMap .tableZone .table table td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:hover, .rightPlayerSide .playerMap .tableZone .table table td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:hover {
+  background-color: rgba(41, 83, 220, 0.164);
+  cursor: pointer;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.unpossible, .leftPlayerSide .opponentMap .tableZone .table table td.unpossible, .rightPlayerSide .playerMap .tableZone .table table td.unpossible, .rightPlayerSide .opponentMap .tableZone .table table td.unpossible {
+  background-color: rgba(5, 5, 5, 0.1490196078);
+  cursor: not-allowed;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.chosen, .leftPlayerSide .opponentMap .tableZone .table table td.chosen, .rightPlayerSide .playerMap .tableZone .table table td.chosen, .rightPlayerSide .opponentMap .tableZone .table table td.chosen {
+  background: url("../img/chosen-td.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.built, .leftPlayerSide .opponentMap .tableZone .table table td.built, .rightPlayerSide .playerMap .tableZone .table table td.built, .rightPlayerSide .opponentMap .tableZone .table table td.built {
+  background: rgba(41, 83, 220, 0.453);
+  cursor: default;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.blocked, .leftPlayerSide .opponentMap .tableZone .table table td.blocked, .rightPlayerSide .playerMap .tableZone .table table td.blocked, .rightPlayerSide .opponentMap .tableZone .table table td.blocked {
+  background-color: rgba(5, 5, 5, 0.1490196078);
+  cursor: not-allowed;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.hit, .leftPlayerSide .opponentMap .tableZone .table table td.hit, .rightPlayerSide .playerMap .tableZone .table table td.hit, .rightPlayerSide .opponentMap .tableZone .table table td.hit {
+  background: url("../img/hit.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+}
+.leftPlayerSide .playerMap .tableZone .table table td.miss, .leftPlayerSide .opponentMap .tableZone .table table td.miss, .rightPlayerSide .playerMap .tableZone .table table td.miss, .rightPlayerSide .opponentMap .tableZone .table table td.miss {
+  background: url("../img/miss.png"), url("../img/water-bg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(5, 5, 5, 0.1490196078);
+  background-size: contain;
+}
+.leftPlayerSide .playerMap .tableZone .table table td:first-child, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td, .leftPlayerSide .opponentMap .tableZone .table table td:first-child, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td, .rightPlayerSide .playerMap .tableZone .table table td:first-child, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td, .rightPlayerSide .opponentMap .tableZone .table table td:first-child, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td {
+  border: none;
+  background: inherit;
+}
+.leftPlayerSide .playerMap .tableZone .table table td:first-child:hover, .leftPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .leftPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .leftPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .playerMap .tableZone .table table td:first-child:hover, .rightPlayerSide .playerMap .tableZone .table table tr:first-child td:hover, .rightPlayerSide .opponentMap .tableZone .table table td:first-child:hover, .rightPlayerSide .opponentMap .tableZone .table table tr:first-child td:hover {
+  background-color: transparent;
+  cursor: default;
+}
+.leftPlayerSide .playerMap .tableZone .table table tr.hidden td, .leftPlayerSide .opponentMap .tableZone .table table tr.hidden td, .rightPlayerSide .playerMap .tableZone .table table tr.hidden td, .rightPlayerSide .opponentMap .tableZone .table table tr.hidden td {
+  height: 0;
+}
+
+.leftPlayerSide {
+  -webkit-animation: slideOutLeft 1s;
+          animation: slideOutLeft 1s;
+}
+
+.rightPlayerSide {
+  -webkit-animation: slideOutRight 1s;
+          animation: slideOutRight 1s;
+}/*# sourceMappingURL=styles.css.map */
